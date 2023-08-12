@@ -26,6 +26,9 @@ jobs: # workflow 内で実行されるジョブの集合を定義
       - run: npm run test -- --coverage
       - run: npm run build
 
+      - run: node dist/index.js &
+      - run: npm run test:api
+
       - uses: actions/upload-artifact@v3 # ビルドやテストの結果をアーティファクトとして保存するためのアクション
         if: always()
         with:
