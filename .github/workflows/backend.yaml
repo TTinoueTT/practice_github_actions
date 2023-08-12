@@ -30,6 +30,6 @@ jobs: # workflow 内で実行されるジョブの集合を定義
 
       - uses: actions/upload-artifact@v3
         with:
-          mame: dist
+          name: dist
           path: backend/dist/index.js
           retention-days: 5
