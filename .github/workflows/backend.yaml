@@ -9,15 +9,27 @@ defaults:
   run:
     working-directory: backend
 
-jobs:
+jobs: # workflow 内で実行されるジョブの集合を定義
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3 # GitHubリポジトリのコードをGitHub Actionsのランナーにチェックアウト
+      - uses: actions/setup-node@v3 # Node.jsをGitHub Actionsのランナーにセットアップする
         with:
-          node-version: 16.x
+          node-version: 16.x # セットアップするNode.jsのバージョンを指定(16系の最新版)
 
       - run: npm ci
-      - run: npm run test
+      - run: npm run test -- --coverage
       - run: npm run build
+
+      - uses: actions/upload-artifact@v3 # ビルドやテストの結果をアーティファクトとして保存するためのアクション
+        with:
+          name: coverage # アーティファクトの名前を指定
+          path: backend/coverage/** # アーティファクトとして保存するファイルやディレクトリのパスを指定
+          retention-days: 5 # アーティファクトを保存する日数を指定(5日間)
+
+      - uses: actions/upload-artifact@v3
+        with:
+          mame: dist
+          path: backend/dist/index.js
+          retention-days: 5
