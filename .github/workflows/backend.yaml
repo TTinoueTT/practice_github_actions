@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+  schedule:
+    # 9時間を足して、日本時間で毎日21時に実行
+    - cron: '0 12 * * *'
+
 defaults:
   run:
     working-directory: backend

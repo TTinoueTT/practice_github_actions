@@ -1,5 +1,7 @@
 # サンプルアプリケーション
 
+[![backend](https://github.com/TTinoueTT/practice_github_actions/actions/workflows/backend.yaml/badge.svg)](https://github.com/TTinoueTT/practice_github_actions/actions/workflows/backend.yaml)
+
 静的なフロントエンドと Web API から成る、足し算アプリケーションです。
 
 ## 開発モードでの起動手順
