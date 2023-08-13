@@ -43,6 +43,7 @@ jobs: # workflow 内で実行されるジョブの集合を定義
           path: backend/dist/index.js
           retention-days: 5
 
+
   deploy:
     needs: build
     if: github.event_name == 'push'
