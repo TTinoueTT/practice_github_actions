@@ -59,15 +59,15 @@ jobs: # workflow 内で実行されるジョブの集合を定義
           known_hosts: ${{ secrets.BACKEND_SERVER_KNOWN_HOSTS }}
       # - run: echo ${{ secrets.BACKEND_SERVER_SSH_KEY }} && echo ${{ secrets.BACKEND_SERVER_KNOWN_HOSTS }} && echo ${{ secrets.BACKEND_SERVER_USER }}
 
-      - run: rsync -v dist/index.js {$SERVER_USER}@{$SERVER_IP}:~/index.js # ダウンロードした dist を利用
+      - run: rsync -v dist/index.js ${SERVER_USER}@${SERVER_IP}:~/index.js # ダウンロードした dist を利用
         env:
           SERVER_USER: ${{ secrets.BACKEND_SERVER_USER }}
           SERVER_IP: ${{ secrets.BACKEND_SERVER_IP }}
-      - run: ssh {$SERVER_USER}@{$SERVER_IP} sudo systemctl restart backend
+      - run: ssh ${SERVER_USER}@${SERVER_IP} sudo systemctl restart backend
         env:
           SERVER_USER: ${{ secrets.BACKEND_SERVER_USER }}
           SERVER_IP: ${{ secrets.BACKEND_SERVER_IP }}
-      - run: ssh {$SERVER_USER}@{$SERVER_IP} systemctl status backend
+      - run: ssh ${SERVER_USER}@${SERVER_IP} systemctl status backend
         env:
           SERVER_USER: ${{ secrets.BACKEND_SERVER_USER }}
           SERVER_IP: ${{ secrets.BACKEND_SERVER_IP }}
